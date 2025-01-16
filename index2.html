@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Model Viewer</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+      background-color: #000; /* Black background for the page */
+      color: #fff; /* White text for readability */
+    }
+    model-viewer {
+      width: 100%;
+      max-width: 600px;
+      height: 400px;
+      margin: 20px auto;
+      border: 1px solid #444;
+      border-radius: 10px;
+      background-color: #000; /* Black background for the model viewer */
+    }
+    select, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>3D Model Viewer</h1>
+  <form id="modelSelector">
+    <label for="gender">Gender:</label>
+    <select id="gender">
+      <option value="female">Female</option>
+      <option value="male">Male</option>
+    </select>
+    <label for="design">Design:</label>
+    <select id="design">
+      <option value="small">Small</option>
+      <option value="medium">Medium</option>
+      <option value="large">Large</option>
+    </select>
+    <button type="button" onclick="loadModel()">Load Model</button>
+  </form>
+
+  <model-viewer id="viewer" src="" alt="A 3D model" auto-rotate camera-controls></model-viewer>
+
+  <script>
+    function loadModel() {
+      const gender = document.getElementById('gender').value;
+      const design = document.getElementById('design').value;
+      const modelViewer = document.getElementById('viewer');
+
+      // Update the model source dynamically
+      modelViewer.src = `https://therealpsdn.github.io/personal/${gender}_${design}.glb`;
+    }
+  </script>
+</body>
+</html>
